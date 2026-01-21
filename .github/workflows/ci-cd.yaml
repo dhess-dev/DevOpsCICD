@@ -31,9 +31,24 @@ jobs:
 
       - id: coverage
         name: Code Coverage Report
+      - name: Install ReportGenerator
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Generate Cobertura report (with packages)
+        run: |
+          set -e
+          REPORTS=$(find . -type f -name 'coverage.cobertura.xml' -path "./**/TestResults/*/coverage.cobertura.xml" -print | tr '\n' ',')
+          if [ -z "$REPORTS" ]; then
+            echo "No coverage files found"
+            exit 0
+          fi
+          reportgenerator -reports:"$REPORTS" -targetdir:coverage-report -reporttypes:Cobertura
+
+      - id: coverage
+        name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: "**/coverage.cobertura.xml"
+          filename: "coverage-report/Cobertura.xml"
           badge: false
           fail_below_min: false
           hide_branch_rate: false
