@@ -43,7 +43,7 @@ jobs:
 
       - id: publish
         name: Publish
-        run: dotnet publish "src/BlazorWebApp/BlazorWebApp.csproj" -c Release -o ./publish --self-contained -r linux-x64 /p:UseAppHost=true
+        run: dotnet publish "src/BlazorWebApp/BlazorWebApp.csproj" -c Release -o ./publish
 
       - name: Zip Artifact
         run: zip -r app.zip ./publish
