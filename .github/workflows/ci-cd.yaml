@@ -73,5 +73,5 @@ jobs:
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
-          app-name: app-wiredbrainapi
+          app-name: GitHubCICDWorkflow
           package: app.zip
