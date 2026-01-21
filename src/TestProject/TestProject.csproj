@@ -15,6 +15,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="../BlazorWebApp/BlazorWebApp.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Using Include="Xunit"/>
     </ItemGroup>
 
