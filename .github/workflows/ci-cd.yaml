@@ -23,17 +23,17 @@ jobs:
       - id: build
         name: Build
         run: dotnet build --no-restore
-        
+
       - id: test
         if: steps.build.outcome == 'success'
         name: Test
-        run: dotnet test --collect:"XPlat Code Coverage" --DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura --no-build --verbosity normal
+        run: dotnet test --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura --no-build --verbosity normal
 
       - id: coverage
         name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: '**/coverage.cobertura.xml'
+          filename: "**/coverage.cobertura.xml"
           badge: false
           fail_below_min: false
           hide_branch_rate: false
